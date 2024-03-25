@@ -1,5 +1,6 @@
 package com.jeferson.jogos.sorteio;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -34,9 +35,28 @@ public class Numeros extends Sorteios{
         System.out.print("Quanto elemento: ");
         int aryNums [] = new int[input.nextInt()];
 
-        for (int i=0; i< aryNums.length; i++) {
-            System.out.print((i+1) + "° Inserir um numero: ");
-            aryNums[i] = input.nextInt();
+        for (int i = 0; i < aryNums.length; i++) {
+            System.out.print((i + 1) + "° Inserir um numero: ");
+            int numero = input.nextInt();
+
+            boolean numeroExiste = false;
+            for (int j = 0; j < i; j++) {
+                if (aryNums[j] == numero) {
+                    numeroExiste = true;
+                    break;
+                }
+            }
+
+            if (numeroExiste) {
+                System.out.println("Número já existe, escolha outro.");
+                i--;
+            } else if (numero < 0) {
+                System.out.println("Não pode ser negativo, escolha outro.");
+                i--;
+            } else {
+                aryNums[i] = numero;
+            }
+            System.out.println("-->" + Arrays.toString(aryNums));
         }
 
         int indiceSorteado = random.nextInt(aryNums.length);
@@ -44,5 +64,4 @@ public class Numeros extends Sorteios{
         System.out.println("O número sorteado é: " + numeroSorteio);
 
     }
-
 }
