@@ -8,6 +8,7 @@ public class Sorteios {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Numeros numeros = new Numeros();
+        Letras letras = new Letras();
         boolean start = true;
 
         try {
@@ -15,7 +16,8 @@ public class Sorteios {
                 System.out.println("---------- SORTEIOS ----------");
                 System.out.print("1-Numero aleatorio de MIN a MAX\n" +
                         "2-Escolhe numero para inserir\n" +
-                        "3-Fim\n");
+                        "3-Escolhe palavra para inserir\n" +
+                        "4-Fim\n");
                 System.out.println("------------------------------");
 
                 String entrada = input.nextLine();
@@ -31,7 +33,9 @@ public class Sorteios {
                     numeros.numeroAleatorioMinMax();
                 } else if ( 2 == numero) {
                     numeros.insertNumSorteio();
-                } else if (3 == numero){
+                } else if ( 3 == numero) {
+                    letras.insertPalavraSorteio();
+                } else if (4 == numero){
                     start = false;
                     System.out.println("Terminando...");
                 } else {
