@@ -4,8 +4,8 @@ import java.io.File;
 
 public class Caminho {
     public static void main(String[] args) {
-        String home = System.getProperty("user.home");
-        String dir1 = System.getProperty("user.dir");
+        String home = System.getProperty("user.home"); //C:\Users\Jeferson
+        String dir1 = System.getProperty("user.dir"); //C:\Users\Jeferson\Desktop\jeferson-learn\geral
         String dir2 = System.getProperty("user.dir") + File.separator + "src" + File.separator + "java" + File.separator + "com.jeferson";
         String teste = dir1 + File.separator + "src" + File.separator + "java" + File.separator + "com.jeferson";
         System.out.println(home);
