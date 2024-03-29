@@ -1,6 +1,6 @@
 package com.jeferson.jogos.sorteio;
 
-import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,28 +8,40 @@ public class Sorteios {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Numeros numeros = new Numeros();
-        Start startEnd = new Start();
         boolean start = true;
 
-        while (start) {
-            System.out.println("---------- SORTEIOS ----------");
-            System.out.print("1-Numero aleatorio de MIN a MAX\n" +
-                    "2-Escolhe numero para inserir\n" +
-                    "3-Fim\n");
-            System.out.println("------------------------------");
+        try {
+            while (start) {
+                System.out.println("---------- SORTEIOS ----------");
+                System.out.print("1-Numero aleatorio de MIN a MAX\n" +
+                        "2-Escolhe numero para inserir\n" +
+                        "3-Fim\n");
+                System.out.println("------------------------------");
 
-            int entrada = input.nextInt();
-            if ( 1 == entrada) {
-                numeros.numeroAleatorioMinMax();
-            } else if ( 2 == entrada) {
-                numeros.insertNumSorteio();
-            } else if (3 == entrada){
-                start = false;
-                System.out.println("Terminando...");
-            } else {
-                System.out.println("Invalido");
+                String entrada = input.nextLine();
+
+                if (entrada.length() > 9) {
+                    throw new InputMismatchException("Número limite 9 dígitos");
+                }
+
+                int numero = Integer.parseInt(entrada);
+                System.out.println("Número digitado: " + numero);
+
+                if ( 1 == numero) {
+                    numeros.numeroAleatorioMinMax();
+                } else if ( 2 == numero) {
+                    numeros.insertNumSorteio();
+                } else if (3 == numero){
+                    start = false;
+                    System.out.println("Terminando...");
+                } else {
+                    System.out.println("Invalido");
+                }
             }
-//            start = startEnd.result();
+        } catch (InputMismatchException e) {
+            System.out.println("ERRO: Digite uma quantidade dentro do limite permitido.");
+        } catch (NumberFormatException e) {
+            System.out.println("ERRO: Não digite letra ou simbolo, somente número inteiro.");
         }
     }
 
