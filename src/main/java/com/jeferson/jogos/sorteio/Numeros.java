@@ -1,30 +1,41 @@
 package com.jeferson.jogos.sorteio;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Numeros extends Sorteios{
+public class Numeros {
 
     public void numeroAleatorioMinMax() {
         Scanner input = new Scanner(System.in);
         boolean boo = true;
 
-        while (boo) {
-            System.out.print("Dirige um numero MIN: ");
-            int min = input.nextInt();
-            System.out.print("Dirige um numero MAX: ");
-            int max = input.nextInt();
-            if (max>=min){
-                System.out.println("------------------------------");
-                System.out.println("Os numeros partir "+min+" ate "+max+ ":");
-                int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-                System.out.println("------------------------------");
-                System.out.println("O número sorteado é: " + random_int);
-                boo = false;
-            } else {
-                System.out.println("Nao permite numero MIN maior do que numero MAX");
+        try {
+            while (boo) {
+
+                DecimalFormat formato = new DecimalFormat("#.#");
+
+                System.out.print("Dirige um numero MIN: ");
+                double min = input.nextDouble();
+
+                System.out.print("Dirige um numero MAX: ");
+                double max = input.nextDouble();
+
+                if (max >= min) {
+                    System.out.println("------------------------------");
+                    System.out.println("Os numeros partir " + formato.format(min) + " ate " + formato.format(max) + ":");
+                    int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
+                    System.out.println("------------------------------");
+                    System.out.println("O número sorteado é: " + random_int);
+                    boo = false;
+                } else {
+                    System.out.println("Nao permite numero MIN maior do que numero MAX");
+                }
             }
+        } catch (InputMismatchException e) {
+            System.out.println("ERRO: Não digite letra ou simbolo, somente número inteiro.");
         }
     }
 
